@@ -7,6 +7,8 @@ using System;
 
 namespace RachelBarnesMobileDevelopment.Models {
 
+    //maybe create a static method that allows me to trim leading and following 0s... that seems like a definitely beneficial idea for later formatting
+        //i know i'll get frustrated by that at some point
     public class ConvertDensities{
         //ounces conversion calculations
             //1 ounce = 28.3495 grams

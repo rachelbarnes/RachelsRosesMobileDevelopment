@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RachelBarnesMobileDevelopment.Models;
-namespace RachelBarnesMobileDevelopmentUnitTests {
+namespace RachelBarnesMobileDevelopmentTests {
     [TestClass]
     public class ConvertDensityTests {
         //ounces calculation tests
@@ -99,7 +99,7 @@ namespace RachelBarnesMobileDevelopmentUnitTests {
             var convert = new ConvertDensities();
             var expected = 70873.75m;
             var actual = convert.ConvertLbsToGrams(156.25m);
-            Assert.AreEqual(expected, actual); 
+            Assert.AreEqual(expected, actual);
         }
         //gallon conversions
         [TestMethod]
