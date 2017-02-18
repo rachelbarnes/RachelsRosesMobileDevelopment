@@ -1,0 +1,8 @@
+﻿Stories for RachelsRosesMobileDevelopment: 
+	End goal: create mobile application for recipe management, still focusing on recipe measurement conversion, recipe and ingredient pricing and ingredient pantry. 
+		I would like nutritional values as well and being able to adjust ingredients based on the nutritional value (vegetable oil replaced by apple sauce, etc.)
+
+Stories: 
+ - measurement conversion methods (cups => teaspoons, etc.)
+ - density conversion methods (ounces => grams, ounces => fl oz (?), lbs => ounces, etc.)
+ - when noting measurements for ingredients, include the grams used in a small text under ingredient in view
