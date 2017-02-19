@@ -7,17 +7,52 @@ using System;
 
 namespace RachelBarnesMobileDevelopment.Models {
 
-    public class ConvertMeasurement {
-        //teaspoon calculations: 
-        public Func<decimal, decimal> ConvertTeaspoonsToTablespoons = teaspoons => Math.Round((teaspoons / 3), 2);
-        public Func<decimal, decimal> ConvertTeaspoonsToCups = teaspoons => Math.Round((teaspoons / 48), 2);
-        //tablespoon calculations: 
-            //for converting .33m tablespoons to teaspoons, i'm getting .99m, which makes sense but is not desirable... i want to be able to round up to a whole number
-                //maybe do some ?? bools for this? 
-        public Func<decimal, decimal> ConvertTablespoonsToTeaspoons = tablespoons => Math.Round((tablespoons * 3), 2);
-        public Func<decimal, decimal> ConvertTablespoonsToCups = tablespoons => Math.Round((tablespoons / 16), 2);
-        //cup calculations: 
-        public Func<decimal, decimal> ConvertCupsToTeaspoons = cups => Math.Round((cups * 48), 2);
-        public Func<decimal, decimal> ConvertCupsToTablespoons = cups => Math.Round((cups * 16), 2); 
+    public class ConvertMeasurementCalculations {
+        //aggregate the teaspoons from the entire measurement
+        public decimal AggregateTeaspoons(string measurement) {
+            var parse = new Parse(); 
+            var convertM = new ConvertMeasurement();
+            var split = new Split();
+            var splitMeasurement = split.SplitMeasurementOrDensity(measurement);
+            var aggregatedTeaspoons = 0m;
+            foreach (var meas in splitMeasurement) {
+                var splitMeas = split.SplitSingleMeasurementOrDensity(meas);
+                var splitMeasDecimal = parse.ParseFractionToDecimal(splitMeas[0]); 
+                if (meas.Contains("cup") || meas.ToLower().Contains("c"))
+                    aggregatedTeaspoons += convertM.ConvertCupsToTeaspoons(splitMeasDecimal);
+                else if (meas.Contains("table") || meas.Contains("T"))
+                    aggregatedTeaspoons += convertM.ConvertTablespoonsToTeaspoons(splitMeasDecimal);
+                else if (meas.Contains("tea") || meas.Contains("t"))
+                    aggregatedTeaspoons += splitMeasDecimal;
+            }
+            return aggregatedTeaspoons;
+        }
+        //public Func<decimal, decimal, decimal> Multiplier = (changeTo, changeFrom) => changeTo / changeFrom;
+        //public Func<int, int, decimal> Multiplier = (changeTo, changeFrom) => changeTo / changeFrom; 
+        
+        public decimal Multiplier(decimal changeTo, decimal changeFrom) {
+            return changeTo / changeFrom; 
+        }
+        public decimal Multiplier(int changeTo, int changeFrom) {
+            return (decimal)changeTo/ (decimal)changeFrom; 
+        }
+        public decimal Multiplier(string changeTo, string changeFrom) {
+            var parse = new Parse();
+            return (parse.ParseFractionToDecimal(changeTo)) / (parse.ParseFractionToDecimal(changeFrom)); 
+        }
+        public string MultiplierString(decimal changeTo, decimal changeFrom) {
+            var parse = new Parse();
+            return parse.ParseDecimalToFraction(Math.Round((changeTo / changeFrom), 2)); 
+        }
+        public string MultiplierString(int changeTo, int changeFrom) {
+            var parse = new Parse();
+            return parse.ParseDecimalToFraction(Math.Round(((decimal)changeTo / (decimal)changeFrom), 2)); 
+        }
+        public string MultiplierString(string changeTo, string changeFrom) {
+            var parse = new Parse();
+            var changeToDecimal = parse.ParseFractionToDecimal(changeTo);
+            var changeFromDecimal = parse.ParseFractionToDecimal(changeFrom);
+            return parse.ParseDecimalToFraction(Math.Round((changeToDecimal / changeFromDecimal), 2)); 
+        }
     }
 }

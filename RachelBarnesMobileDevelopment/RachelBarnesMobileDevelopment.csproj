@@ -202,11 +202,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ConversionDensityModel.cs" />
+    <Compile Include="Models\ConvertDensityCalculationsModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ConvertMeasurementModel.cs" />
+    <Compile Include="Models\ConvertMeasurementCalculationsModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Exceptions.cs" />
+    <Compile Include="Models\ConvertMeasurementModel.cs" />
+    <Compile Include="Models\Parse.cs" />
     <Compile Include="Models\SplitModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />

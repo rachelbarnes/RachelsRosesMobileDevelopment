@@ -4,96 +4,143 @@ using System.Linq;
 using System.Web;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RachelBarnesMobileDevelopment.Models;
-
-namespace RachelBarnesMobileDevelopmentTests{
+namespace RachelBarnesMobileDevelopmentUnitTests {
     [TestClass]
-    public class ConversionDensityTests { 
-        //teaspoon calculation tests (teapsoons => tablespoons; teaspoons => cups)
+    public class ConvertTests {
+        //the conversions can be done for measurements that have the whole name (cups, tablespoons, teaspoons) or for general abbreviations (c, table, T, tea, t)
         [TestMethod]
-        public void ConvertTeaspoonsToTablespoons() {
-            var convert = new ConvertMeasurement();
+        public void ConvertMeasurementToTeaspoons() {
+            var convert = new ConvertMeasurementCalculations();
             var expected = 1m;
-            var actual = convert.ConvertTeaspoonsToTablespoons(3m);
-            Assert.AreEqual(expected, actual);
+            var actual = convert.AggregateTeaspoons("1 teaspoon");
+            Assert.AreEqual(expected, actual); 
         }
         [TestMethod]
-        public void ConvertTeaspoonsToTablespoons2() {
-            var convert = new ConvertMeasurement();
-            var expected = .33m;
-            var actual = convert.ConvertTeaspoonsToTablespoons(1m);
-            Assert.AreEqual(expected, actual);
+        public void ConvertMeasurementToTeaspoons2() {
+            var convert = new ConvertMeasurementCalculations();
+            var expected = 3m;
+            var actual = convert.AggregateTeaspoons("1 tablespoons");
+            Assert.AreEqual(expected, actual); 
         }
         [TestMethod]
-        public void ConvertTeaspoonToCups() {
-            var convert = new ConvertMeasurement();
-            var expected = 1m;
-            var actual = convert.ConvertTeaspoonsToCups(48m);
-            Assert.AreEqual(expected, actual);
-        }
-        [TestMethod]
-        public void ConvertTeaspoonToCups2() {
-            var convert = new ConvertMeasurement();
-            var expected = .5m;
-            var actual = convert.ConvertTeaspoonsToCups(24m);
-            Assert.AreEqual(expected, actual);
-        }
-        //tablepsoon calculation tests (tablespoons => teaspoons; tablespoons => cups)
-        [TestMethod]
-        public void ConvertTablespoonsToTeaspoons() {
-            var convert = new ConvertMeasurement();
-            var expected = .99m;
-            var actual = convert.ConvertTablespoonsToTeaspoons(.33m);
-            Assert.AreEqual(expected, actual);
-        }
-        [TestMethod]
-        public void ConvertTablespoonsToTeaspoons2() {
-            var convert = new ConvertMeasurement();
-            var expected = 6m;
-            var actual = convert.ConvertTablespoonsToTeaspoons(2m);
-            Assert.AreEqual(expected, actual);
-        }
-        [TestMethod]
-        public void ConvertTablespoonsToCups() {
-            var convert = new ConvertMeasurement();
-            var expected = 1m;
-            var actual = convert.ConvertTablespoonsToCups(16m);
-            Assert.AreEqual(expected, actual);
-        }
-        [TestMethod]
-        public void ConvertTablespoonsToCups2() {
-            var convert = new ConvertMeasurement();
-            var expected = 6m;
-            var actual = convert.ConvertTablespoonsToCups(96m);
-            Assert.AreEqual(expected, actual);
-        }
-        //cup calculation tests (cups => teaspoons; cups => tablespoons)
-        [TestMethod]
-        public void ConvertCupsToTeaspoons() {
-            var convert = new ConvertMeasurement();
+        public void ConvertMeasurementToTeaspoons3() {
+            var convert = new ConvertMeasurementCalculations();
             var expected = 48m;
-            var actual = convert.ConvertCupsToTeaspoons(1m);
-            Assert.AreEqual(expected, actual);
-        }
-        [TestMethod]
-        public void ConvertCupsToTeaspoons2() {
-            var convert = new ConvertMeasurement();
-            var expected = 12m;
-            var actual = convert.ConvertCupsToTeaspoons(.25m);
-            Assert.AreEqual(expected, actual);
-        }
-        [TestMethod]
-        public void ConvertCupsToTablespoons() {
-            var convert = new ConvertMeasurement();
-            var expected = 16m;
-            var actual = convert.ConvertCupsToTablespoons(1m);
+            var actual = convert.AggregateTeaspoons("1 cup");
             Assert.AreEqual(expected, actual); 
         }
         [TestMethod]
-        public void ConvertCupsToTablespoons2() {
-            var convert = new ConvertMeasurement();
-            var expected = 8m;
-            var actual = convert.ConvertCupsToTablespoons(.5m);
+        public void ConvertMeasurementToTeaspoons4() {
+            var convert = new ConvertMeasurementCalculations();
+            var expected = 3m;
+            var actual = convert.AggregateTeaspoons("1 T");
             Assert.AreEqual(expected, actual); 
         }
+        [TestMethod]
+        public void ConvertMeasurementToTeaspoons5() {
+            var convert = new ConvertMeasurementCalculations();
+            var expected = 48m;
+            var actual = convert.AggregateTeaspoons("1 c");
+            Assert.AreEqual(expected, actual); 
+        }
+        [TestMethod]
+        public void ConvertMeasurementToTeaspoons6() {
+            var convert = new ConvertMeasurementCalculations();
+            var expected = 11m;
+            var actual = convert.AggregateTeaspoons("3 tablespoons 2 teaspoons");
+            Assert.AreEqual(expected, actual); 
+        }
+        [TestMethod]
+        public void ConvertMeasurementToTeaspoons7() {
+            var convert = new ConvertMeasurementCalculations();
+            var expected = 600m;
+            var actual = convert.AggregateTeaspoons("12 1/2 cups");
+            Assert.AreEqual(expected, actual); 
+        }
+        [TestMethod]
+        public void ConvertMeasurementToTeaspoons8() {
+            var convert = new ConvertMeasurementCalculations();
+            var expected = 187.5m;
+            var actual = convert.AggregateTeaspoons("3 3/4 cups 2 tablespoons 1 1/2 teaspoons");
+            Assert.AreEqual(expected, actual); 
+        }
+        [TestMethod]
+        public void ConvertMeasurementToTeaspoons9() {
+            var convert = new ConvertMeasurementCalculations();
+            var expected = 258.75m;
+            var actual = convert.AggregateTeaspoons("5 1/8 c 3 1/2 T 2 1/4 t"); 
+            Assert.AreEqual(expected, actual); 
+        }
+        [TestMethod]
+        public void MultiplierTest() {
+            var convert = new ConvertMeasurementCalculations();
+            var expected = 2m;
+            var actual = convert.Multiplier(2m, 1m);
+            Assert.AreEqual(expected, actual); 
+        }
+        [TestMethod]
+        public void MultiplierTest2() {
+            var convert =new ConvertMeasurementCalculations();
+            var expected = .66m;
+            var actual = convert.Multiplier(.66m, 1m);
+            Assert.AreEqual(expected, actual); 
+        }
+        [TestMethod]
+        public void MultiplierTest3() {
+            var convert = new ConvertMeasurementCalculations();
+            var expected = .5m;
+            var actual = convert.Multiplier(10, 20);
+            Assert.AreEqual(expected, actual); 
+        }
+        [TestMethod]
+        public void MultiplierTest4() {
+            var convert = new ConvertMeasurementCalculations();
+            var expected = .75m;
+            var actual = convert.Multiplier("10 1/2", "14");
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void MultiplierStringTest() {
+            var convert = new ConvertMeasurementCalculations();
+            var expected = "3/4";
+            var actual = convert.MultiplierString("10 1/2", "14");
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void MultiplierStringTest2() {
+            var convert = new ConvertMeasurementCalculations();
+            var expected = "1";
+            var actual = convert.MultiplierString("14", "14");
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void MultiplierStringTest3() {
+            var convert = new ConvertMeasurementCalculations();
+            var expected = "1 1/2";
+            var actual = convert.MultiplierString(21, 14);
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void MultiplierStringTest4() {
+            var convert = new ConvertMeasurementCalculations();
+            var expected = ".3";
+            var actual = convert.MultiplierString(6, 20);
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void MultiplierStringTest5() {
+            var convert = new ConvertMeasurementCalculations();
+            var expected = "1/2";
+            var actual = convert.MultiplierString(5.5m, 11m);
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void MultiplierStringTest6() {
+            var convert = new ConvertMeasurementCalculations();
+            var expected = "8.57";
+            var actual = convert.MultiplierString(120m, 14m);
+            Assert.AreEqual(expected, actual);
+        }
+
     }
 }

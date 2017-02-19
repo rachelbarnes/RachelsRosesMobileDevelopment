@@ -10,7 +10,7 @@ namespace RachelBarnesMobileDevelopment.Models {
 
     public class Split {
         //split a string measurement or weight from numbers and the weight
-        public string[] SplitMeasurementOrWeightAtSpace(string toSplit) {
+        public string[] SplitSingleMeasurementOrDensity(string toSplit) {
             var split = new string[] { };
             for (int i = 0; i < toSplit.Length; i++) {
                 if (i > 0 && i < toSplit.Length - 1) {
@@ -74,10 +74,30 @@ namespace RachelBarnesMobileDevelopment.Models {
                     var currChar = multiLevelMeasurement[i];
                     var nextChar = multiLevelMeasurement[i + 1];
                     if ((!int.TryParse(prevChar.ToString(), out n)) && (currChar == ' ') && (int.TryParse(nextChar.ToString(), out n))) {
-                        return split = new string[] { firstSplitLevelMeasurement[0], secondSplitLevelMeasurement[0], secondSplitLevelMeasurement[1], secondSplitLevelMeasurement[2] }; 
+                        return split = new string[] { firstSplitLevelMeasurement[0], secondSplitLevelMeasurement[0], secondSplitLevelMeasurement[1], secondSplitLevelMeasurement[2] };
                     }
                 }
             }
+            return split;
+        }
+        public string[] SplitMeasurementOrDensity(string measurementToBeSplit) {
+            //i have " c ", etc. with spaces to distinguish them from the teaspoons, tablespoons and cups when doing the parsing; 
+                //i don't want to get extra in my count
+            var measurements = new string[] { "cup", "tablespoon", "teaspoon", "pinch", "gram", " c ", " C ", " T ", " t ", "tea ", "table " };
+            var split = new string[] { };
+            var count = 0;
+            foreach (var meas in measurements) {
+                if (measurementToBeSplit.Contains(meas))
+                    count++;
+            }
+            if (count == 1)
+                return split = new string[] { measurementToBeSplit };
+            else if (count == 2)
+                return split = SplitDoubleLayerMeasurement(measurementToBeSplit);
+            else if (count == 3)
+                return split = SplitTripleLayerMeasurement(measurementToBeSplit);
+            else if (count == 4)
+                return split = SplitQuadLayerMeasurement(measurementToBeSplit);
             return split;
         }
     }
