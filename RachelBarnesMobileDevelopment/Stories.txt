@@ -2,7 +2,22 @@
 	End goal: create mobile application for recipe management, still focusing on recipe measurement conversion, recipe and ingredient pricing and ingredient pantry. 
 		I would like nutritional values as well and being able to adjust ingredients based on the nutritional value (vegetable oil replaced by apple sauce, etc.)
 
+	For the View/Ingredient object, have the grams of the ingredient as well as the measurement in pt 10 font underneath the measurement 
+
+	VS Unit Tests
+	LINQ Queries
+	More Try Catches
+	More with attributes 
+
 Stories: 
  - measurement conversion methods (cups => teaspoons, etc.)
  - density conversion methods (ounces => grams, ounces => fl oz (?), lbs => ounces, etc.)
  - when noting measurements for ingredients, include the grams used in a small text under ingredient in view
+ - split a measurement; split a multi level meaurement
+ - parse a decimal into a fraction
+ - convert a measurement based on a multiplier (yield)
+	- requires total teaspoons amount, then multiplying, then narrowing down cups, tablespoons and teaspoons 
+ - make call to Walmart API for ingredient information
+	- unless the name is exact, i don't get a response... there's no grace in the name
+		- do a try catch here... try the response and in the catch give a list of ingredient names/itemresponse names from 
+			a table in the database and have the user in the UI choose one of those, then use the information from tha name

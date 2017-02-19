@@ -87,8 +87,15 @@ namespace RachelBarnesMobileDevelopmentTests {
         public void TestSplitTripleLevelMeasurement() {
             var split = new Split();
             var expected = new string[] { "1 cup", "1 tablespoon", "1 teaspoon" };
-            var actal = split.SplitTripleLayerMeasurement("1 cup 1 tablespoon 1 teaspoon");
-            CollectionAssert.AreEqual(expected, actal); 
+            var actual = split.SplitTripleLayerMeasurement("1 cup 1 tablespoon 1 teaspoon");
+            CollectionAssert.AreEqual(expected, actual); 
+        }
+        [TestMethod]
+        public void TestSPlitQuadLevelMeasurement() {
+            var split = new Split();
+            var expected = new string[] { "1 cup", "1 tablespoon", "1 teaspoon", "1 pinch" };
+            var actual = split.SplitQuadLayerMeasurement("1 cup 1 tablespoon 1 teaspoon 1 pinch");
+            CollectionAssert.AreEqual(expected, actual); 
         }
     }
 }
