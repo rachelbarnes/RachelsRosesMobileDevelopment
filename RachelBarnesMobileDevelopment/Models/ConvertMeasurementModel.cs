@@ -18,11 +18,11 @@ namespace RachelBarnesMobileDevelopment.Models {
             foreach (var meas in splitMeasurement) {
                 var splitMeas = split.SplitSingleMeasurementOrDensity(meas);
                 var splitMeasDecimal = parse.ParseFractionToDecimal(splitMeas[0]);
-                if (meas.Contains("cup") || meas.ToLower().Contains("c"))
+                if (meas.Contains("cup"))
                     aggregatedTeaspoons += convertM.ConvertCupsToTeaspoons(splitMeasDecimal);
-                else if (meas.Contains("table") || meas.Contains("T"))
+                else if (meas.Contains("table"))
                     aggregatedTeaspoons += convertM.ConvertTablespoonsToTeaspoons(splitMeasDecimal);
-                else if (meas.Contains("tea") || meas.Contains("t"))
+                else if (meas.Contains("tea"))
                     aggregatedTeaspoons += splitMeasDecimal;
                 else if (meas.Contains("pinch"))
                     aggregatedTeaspoons += convertM.ConvertPinchesToTeaspoons(splitMeasDecimal);
@@ -66,7 +66,7 @@ namespace RachelBarnesMobileDevelopment.Models {
         public void AddMeasurementToDictionary(Dictionary<string, decimal> dict, string key, decimal value) {
             if (dict.Keys.Contains(key))
                 dict[key] = dict[key] + value;
-            if (!dict.Keys.Contains(key))
+            else if (!dict.Keys.Contains(key))
                 dict.Add(key, value);
         }
         public string CondenseTeaspoonsToMeasurement(decimal t) {
@@ -144,13 +144,13 @@ namespace RachelBarnesMobileDevelopment.Models {
                 }
                 if (t < .05m && t > 0m) {
                     AddMeasurementToDictionary(measDict, "pinches", 1m);
-                    t = 0m; 
+                    t = 0m;
                 }
             }
             foreach (var measurement in measDict) {
                 var boolean = measurement.Value == 1m;
                 var single = measurement.Key.Substring(0, measurement.Key.Length - 1);
-                var singlePinch = measurement.Key.Substring(0, measurement.Key.Length - 2); 
+                var singlePinch = measurement.Key.Substring(0, measurement.Key.Length - 2);
                 if (boolean && measurement.Key.Contains("pinch"))
                     condensedMeasurement += string.Format("{0} {1} ", parse.ParseDecimalToFraction(measurement.Value), measurement.Key.Substring(0, (measurement.Key.Length - 2)));
                 else if (boolean)
@@ -164,7 +164,27 @@ namespace RachelBarnesMobileDevelopment.Models {
         public string AdjustMeasurement(string measurement, decimal changeTo, decimal changeFrom) {
             var multiplier = Multiplier(changeTo, changeFrom);
             var adjustment = AdjustedTeaspoons(AggregateTeaspoons(measurement), multiplier);
-            return CondenseTeaspoonsToMeasurement(adjustment); 
+            return CondenseTeaspoonsToMeasurement(adjustment);
+        }
+        public string AdjustEggsMeasurement(string eggsMeasurement, decimal changeTo, decimal changeFrom) {
+            var parse = new Parse();
+            var split = new Split();
+            var multiplier = Multiplier(changeTo, changeFrom);
+            var eggsMeasurementSplit = split.SplitSingleMeasurementOrDensity(eggsMeasurement);
+            var adjustedEggsMeasurementDecimal = decimal.Parse(parse.ParseFractionToDecimal(eggsMeasurementSplit[0]).ToString()) * multiplier;
+            var boolean = adjustedEggsMeasurementDecimal == 1m;
+            var eggsMeasurementLastChar = eggsMeasurementSplit[1][eggsMeasurementSplit[1].Length - 1]; //== 's'
+            var singleEggIngredient = (eggsMeasurementSplit[1][eggsMeasurementSplit[1].Length - 1] == 's') ? eggsMeasurementSplit[1].Substring(0, eggsMeasurementSplit[1].Length - 1) : eggsMeasurementSplit[1];
+            if (boolean)
+                return string.Format("{0} {1}", parse.ParseDecimalToFraction(adjustedEggsMeasurementDecimal), singleEggIngredient);
+            else if (!(boolean) && eggsMeasurementLastChar == 's')
+                return string.Format("{0} {1}", parse.ParseDecimalToFraction(adjustedEggsMeasurementDecimal), eggsMeasurementSplit[1]);
+            else if ((!boolean) && eggsMeasurementLastChar != 's')
+                return string.Format("{0} {1}s", parse.ParseDecimalToFraction(adjustedEggsMeasurementDecimal), eggsMeasurementSplit[1]);
+                    //this edit for the type of egg ingredient will get awkward if it's "egg whites, beaten"... 
+                        //it'll see that the last letter isn't 's', and it will adjust it to "egg whites, beatens"
+            else return "Eggs Measurement did not convert correctly"; 
+            //this is not what I had envisioned, but for a try catch with an exception, the method has to be void, right? 
         }
     }
 }
