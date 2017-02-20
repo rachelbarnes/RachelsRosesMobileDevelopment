@@ -83,7 +83,7 @@ namespace RachelBarnesMobileDevelopment.Models {
         public string[] SplitMeasurementOrDensity(string measurementToBeSplit) {
             //i have " c ", etc. with spaces to distinguish them from the teaspoons, tablespoons and cups when doing the parsing; 
                 //i don't want to get extra in my count
-            var measurements = new string[] { "cup", "tablespoon", "teaspoon", "pinch", "gram", " c ", " C ", " T ", " t ", "tea ", "table " };
+            var measurements = new string[] { "cup", "pinch", "gram", "tea", "table" };
             var split = new string[] { };
             var count = 0;
             foreach (var meas in measurements) {
