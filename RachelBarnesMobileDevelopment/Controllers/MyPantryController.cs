@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace RachelBarnesMobileDevelopment.Controllers {
-    public class SellingInformationController : Controller {
+    public class MyPantryController : Controller {
         //public ActionResult Index() {
         //    return View();
         //}

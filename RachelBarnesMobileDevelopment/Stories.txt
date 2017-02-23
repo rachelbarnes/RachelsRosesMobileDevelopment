@@ -21,3 +21,4 @@ Stories:
 	- unless the name is exact, i don't get a response... there's no grace in the name
 		- do a try catch here... try the response and in the catch give a list of ingredient names/itemresponse names from 
 			a table in the database and have the user in the UI choose one of those, then use the information from tha name
+ - connect to SQL thorugh entity framework; start testing usage of this and get more comfortable with LINQ queries

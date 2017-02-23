@@ -10,6 +10,6 @@ namespace RachelBarnesMobileDevelopment.Controllers {
             ViewBag.Ingredients = MyIngredients;
             return View(); 
         }
-
+        
     }
 }

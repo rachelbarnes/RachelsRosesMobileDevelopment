@@ -14,8 +14,8 @@ namespace RachelBarnesMobileDevelopment.Models {
         decimal aggregatedPrice = 0m;
         int yield = 0;
         decimal pricePerServing = 0m; 
-
         public Recipe() { }
+
         public Recipe(string name) {
             var _name = name;
             var _id = this.id;
