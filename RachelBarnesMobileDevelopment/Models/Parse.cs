@@ -61,45 +61,70 @@ namespace RachelBarnesMobileDevelopment.Models {
                 return properFraction;
             } else return "Decimal did not parse correctly.";
         }
-        public decimal GetDifferenceBetweenHardcodedFractionAndReturnedFraction(string hardcoded, string returned) {
-            return decimal.Round((ParseFractionToDecimal(hardcoded) - ParseFractionToDecimal(returned)), 2);
-        }
-        //5.5, 5.25, 6.33
-        //if ((((int.Parse(decimalPortionReturnedDecimalArray[1])) / 2).ToString().Contains('.')))
-        //if the int.parse of the decimal part of returnedDecimal has a decimal when it's divded by 2 (so if it's uneven), then return false; otherwise, return true
-        //var evenArray = (((int.Parse(decimalPortionReturnedDecimal)) / 2).ToString().Contains('.')) ? false : true;
-        public bool isDecimalEven(decimal returnedDecimal) {
-            var hardcodedFractions = new string[] { "1/8", "1/3", "1/4", "1/2", "2/3", "3/4", "7/8" };
-            var returnedFraction = ParseDecimalToFraction(returnedDecimal);
-            var decString = "";
-            var decimalPortionReturnedDecimalArray = new string[] { };
-            if (returnedDecimal.ToString().Contains('.')) {
-                decimalPortionReturnedDecimalArray = returnedDecimal.ToString().Split('.');
-                decString = decimalPortionReturnedDecimalArray[1];
-            } else decString = returnedDecimal.ToString();
-            //if the int.parse(decString) / 2 does NOT has a . (meaning it doesn't divide by 2 cleanly), then return true; 
-            var even = !(((decimal.Parse(decString)) / 2).ToString().Contains('.')) ? true : false;
-            return even;
-        }
-        public string CondenseDecimalToFraction(decimal returnedDecimal) {
-            var amIEven = isDecimalEven(returnedDecimal);
-            var condensedDecimalFraction = "";
-            if (amIEven) {
-                var decStringArray = new string[] { };
-                var decStringWholeNumber = "";
-                var decString = "";
-                if (returnedDecimal.ToString().Contains('.')) {
-                    decStringArray = returnedDecimal.ToString().Split('.');
-                    decString = decStringArray[1];
-                    decStringWholeNumber = decStringArray[0]; 
-                } else decString = returnedDecimal.ToString();
-                condensedDecimalFraction = decStringWholeNumber != "0" ? string.Format("{0} {1}/{2}", decStringArray[0], ((decimal.Parse(decString) / 2)), decString) : string.Format("{0}/{1}", ((decimal.Parse(decString) / 2)), decString);
-                //var decString = returnedDecimal.ToString().Contains('.') ? returnedDecimal.ToString().Split('.') : returnedDecimal.ToString().ToArray(); 
-                var calculatedDecimalFromCondensedFraction = ((decimal.Parse(decStringArray[1])) / 2) / decimal.Parse(decString);
-                var continuedEvenness = (isDecimalEven(calculatedDecimalFromCondensedFraction)) ? true : false;
-                //i'm trying to find the best way to narrow down the denominator and the numerator with an automated process... 
-            }
-            return condensedDecimalFraction;
-        }
     }
 }
+//this was a way of condensing the fractions and simplifying them, taking the difference and placing them on the view (to be created), 
+//but i need a new battleplan for them.         
+
+/*public decimal GetDifferenceBetweenHardcodedFractionAndReturnedFraction(string hardcoded, string returned) {
+    return decimal.Round((ParseFractionToDecimal(hardcoded) - ParseFractionToDecimal(returned)), 2);
+}
+        5.5, 5.25, 6.33
+        public bool isDecimalEven(decimal returnedDecimal) {
+    var hardcodedFractions = new string[] { "1/8", "1/3", "1/4", "1/2", "2/3", "3/4", "7/8" };
+    var returnedFraction = ParseDecimalToFraction(returnedDecimal);
+    var decString = "";
+    var decimalPortionReturnedDecimalArray = new string[] { };
+    if (returnedDecimal.ToString().Contains('.')) {
+        decimalPortionReturnedDecimalArray = returnedDecimal.ToString().Split('.');
+        decString = decimalPortionReturnedDecimalArray[1];
+    } else decString = returnedDecimal.ToString();
+    //if the int.parse(decString) / 2 does NOT has a . (meaning it doesn't divide by 2 cleanly), then return true; 
+    var even = !(((decimal.Parse(decString)) / 2).ToString().Contains('.')) ? true : false;
+    return even;
+}
+public string CondenseDecimalToFraction(decimal returnedDecimal) {
+    var amIEven = isDecimalEven(returnedDecimal);
+    var condensedDecimalFraction = "";
+    var decStringArray = new string[] { };
+    var decStringWholeNumber = "";
+    var decString = "";
+    if (returnedDecimal.ToString().Contains('.')) {
+        decStringArray = returnedDecimal.ToString().Split('.');
+        decString = decStringArray[1];
+        decStringWholeNumber = decStringArray[0];
+    } else decString = returnedDecimal.ToString();
+    if (amIEven) {
+        condensedDecimalFraction = decStringWholeNumber != "0" ? string.Format("{0} {1}/{2}", decStringArray[0], ((decimal.Parse(decString) / 2)), decString) : string.Format("{0}/{1}", ((decimal.Parse(decString) / 2)), decString);
+        var calculatedDecimalFromCondensedFraction = ((decimal.Parse(decStringArray[1])) / 2) / decimal.Parse(decString);
+        var continuedEvenness = (isDecimalEven(calculatedDecimalFromCondensedFraction)) ? true : false;
+        //while (continuedEvenness) {
+        //    ParseDecimalToFraction(calculatedDecimalFromCondensedFraction);
+
+        //}
+    } else {
+        condensedDecimalFraction = decStringWholeNumber != "0" ? string.Format("{0} {1}/{2}", decStringArray[0], ((decimal.Parse(decString))), 100) : string.Format("{0}/{1}", ((decimal.Parse(decString))), 100);
+    }
+    return condensedDecimalFraction;
+}
+*/
+
+
+//var decStringArray = new string[] { };
+//var decStringWholeNumber = "";
+//var decString = "";
+//if (returnedDecimal.ToString().Contains('.')) {
+//    decStringArray = returnedDecimal.ToString().Split('.');
+//    decString = decStringArray[1];
+//    decStringWholeNumber = decStringArray[0];
+//} else decString = returnedDecimal.ToString();
+//var decString = returnedDecimal.ToString().Contains('.') ? returnedDecimal.ToString().Split('.') : returnedDecimal.ToString().ToArray(); 
+//i'm trying to find the best way to narrow down the denominator and the numerator with an automated process... 
+//var decStringArray = new string[] { };
+//var decStringWholeNumber = "";
+//var decString = "";
+//if (returnedDecimal.ToString().Contains('.')) {
+//    decStringArray = returnedDecimal.ToString().Split('.');
+//    decString = decStringArray[1];
+//    decStringWholeNumber = decStringArray[0];
+//} else decString = returnedDecimal.ToString();

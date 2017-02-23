@@ -85,13 +85,13 @@ namespace RachelBarnesMobileDevelopmentTests {
             var actual = parse.ParseDecimalToFraction(.12m);
             Assert.AreEqual(expected, actual);
         }
-        [TestMethod]
-        public void TestParseDecimalToFraction9() {
-            var parse = new Parse();
-            var expected = "1.95";
-            var actual = parse.ParseDecimalToFraction(1.95m);
-            Assert.AreEqual(expected, actual);
-        }
+        //[TestMethod]
+        //public void TestParseDecimalToFraction9() {
+        //    var parse = new Parse();
+        //    var expected = "1.95";
+        //    var actual = parse.ParseDecimalToFraction(1.95m);
+        //    Assert.AreEqual(expected, actual);
+        //}
         [TestMethod]
         public void TestParseDecimalToFraction10() {
             var parse = new Parse();
@@ -120,68 +120,87 @@ namespace RachelBarnesMobileDevelopmentTests {
             var actual = parse.ParseDecimalToFraction(6.75m);
             Assert.AreEqual(expected, actual);
         }
-        [TestMethod]
-        public void TestEvenNumberFalse() {
-            var parse = new Parse();
-            var expected = false;
-            var actual = parse.isDecimalEven(1m);
-            Assert.AreEqual(expected, actual);
-        }
-        [TestMethod]
-        public void TestEvenNumberTrue() {
-            var parse = new Parse();
-            var expected = true;
-            var actual = parse.isDecimalEven(2m);
-            Assert.AreEqual(expected, actual);
-        }
-        [TestMethod]
-        public void TestEvenNumberFalse2() {
-            var parse = new Parse();
-            var expected = false;
-            var actual = parse.isDecimalEven(1.33m);
-            Assert.AreEqual(expected, actual);
-        }
-        [TestMethod]
-        public void TestEvenNumberTrue2() {
-            var parse = new Parse();
-            var expected = true;
-            var actual = parse.isDecimalEven(2.50m);
-            Assert.AreEqual(expected, actual);
-        }
-        [TestMethod]
-        public void TestEvenNumberFalse3() {
-            var parse = new Parse();
-            var expected = false;
-            var actual = parse.isDecimalEven(55.55m);
-            Assert.AreEqual(expected, actual); 
-        }
-        [TestMethod]
-        public void TestEvenNumberTrue3() {
-            var parse = new Parse();
-            var expected = true;
-            var actual = parse.isDecimalEven(55.56m);
-            Assert.AreEqual(expected, actual); 
-        }
-        [TestMethod]
-        public void TestCondenseDecimalToFraction() {
-            var parse = new Parse();
-            var expected = "25/50";
-            var actual = parse.CondenseDecimalToFraction(.50m);
-            Assert.AreEqual(expected, actual); 
-        }
-        [TestMethod]
-        public void TestCondeseDecimalToFraction2() {
-            var parse = new Parse();
-            var expected = "14/28";
-            var actual = parse.CondenseDecimalToFraction(.28m);
-            Assert.AreEqual(expected, actual); 
-        }
-        [TestMethod]
-        public void TestCondenseDecimalToFraction3() {
-            var parse = new Parse();
-            var expected = "1 25/50";
-            var actual = parse.CondenseDecimalToFraction(1.50m);
-            Assert.AreEqual(expected, actual); 
-        }
+        //[TestMethod]
+        //public void TestEvenNumberFalse() {
+        //    var parse = new Parse();
+        //    var expected = false;
+        //    var actual = parse.isDecimalEven(1m);
+        //    Assert.AreEqual(expected, actual);
+        //}
+        //[TestMethod]
+        //public void TestEvenNumberTrue() {
+        //    var parse = new Parse();
+        //    var expected = true;
+        //    var actual = parse.isDecimalEven(2m);
+        //    Assert.AreEqual(expected, actual);
+        //}
+        //[TestMethod]
+        //public void TestEvenNumberFalse2() {
+        //    var parse = new Parse();
+        //    var expected = false;
+        //    var actual = parse.isDecimalEven(1.33m);
+        //    Assert.AreEqual(expected, actual);
+        //}
+        //[TestMethod]
+        //public void TestEvenNumberTrue2() {
+        //    var parse = new Parse();
+        //    var expected = true;
+        //    var actual = parse.isDecimalEven(2.50m);
+        //    Assert.AreEqual(expected, actual);
+        //}
+        //[TestMethod]
+        //public void TestEvenNumberFalse3() {
+        //    var parse = new Parse();
+        //    var expected = false;
+        //    var actual = parse.isDecimalEven(55.55m);
+        //    Assert.AreEqual(expected, actual); 
+        //}
+        //[TestMethod]
+        //public void TestEvenNumberTrue3() {
+        //    var parse = new Parse();
+        //    var expected = true;
+        //    var actual = parse.isDecimalEven(55.56m);
+        //    Assert.AreEqual(expected, actual); 
+        //}
+        //[TestMethod]
+        //public void TestCondenseDecimalToFraction() {
+        //    var parse = new Parse();
+        //    var expected = "25/50";
+        //    var actual = parse.CondenseDecimalToFraction(.50m);
+        //    Assert.AreEqual(expected, actual); 
+        //}
+        //[TestMethod]
+        //public void TestCondeseDecimalToFraction2() {
+        //    var parse = new Parse();
+        //    var expected = "14/28";
+        //    var actual = parse.CondenseDecimalToFraction(.28m);
+        //    Assert.AreEqual(expected, actual); 
+        //}
+        //[TestMethod]
+        //public void TestCondenseDecimalToFraction3() {
+        //    var parse = new Parse();
+        //    var expected = "1 25/50";
+        //    var actual = parse.CondenseDecimalToFraction(1.50m);
+        //    Assert.AreEqual(expected, actual); 
+        //}
+        //[TestMethod]
+        //public void TestCondenseDecimalToFraction4() {
+        //    var parse = new Parse();
+        //    var expected = "15/100";
+        //    var actual = parse.CondenseDecimalToFraction(.15m);
+        //    Assert.AreEqual(expected, actual); 
+        //}
+        //[TestMethod]
+        //public void TestCondenseDecimalToFraction5() {
+        //    var parse = new Parse();
+        //    var expected = "5 47/100";
+        //    var actual = parse.CondenseDecimalToFraction(5.47m);
+        //    Assert.AreEqual(expected, actual); 
+        //}
+        //[TestMethod]
+        //public void TestCondenseDecimalToFraction6() {
+        //    var parse = new Parse();
+        //    var expected = "2 "
+        //}
     }
 }
