@@ -21,8 +21,8 @@ namespace RachelBarnesMobileDevelopment.Controllers {
 
             return View();
         }
-        public ActionResult TestingEntityFramework() {
-            using (var db = new )
-        }
+        //public ActionResult TestingEntityFramework() {
+        //    using (var db = new )
+        //}
     }
 }

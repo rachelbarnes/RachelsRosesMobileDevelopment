@@ -53,6 +53,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CapitalizeTests.cs" />
+    <Compile Include="IngredientsTableDBTests.cs" />
+    <Compile Include="ReaderUnitTests.cs" />
+    <Compile Include="RecipesTableDBTests.cs" />
+    <Compile Include="CostsTableDBTests.cs" />
+    <Compile Include="SellingInformationTableDBTests.cs" />
+    <Compile Include="IngredientDensityTableTests.cs" />
     <Compile Include="ConvertMeasurementTests.cs" />
     <Compile Include="ConvertDensityCalculationsTests.cs" />
     <Compile Include="ConvertMeasurementCalculationsTests.cs" />

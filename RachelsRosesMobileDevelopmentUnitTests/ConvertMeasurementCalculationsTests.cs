@@ -5,7 +5,7 @@ using System.Web;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RachelBarnesMobileDevelopment.Models;
 
-namespace RachelBarnesMobileDevelopmentTests{
+namespace RachelsRosesMobileDevelopmentUnitTests {
     [TestClass]
     public class ConversionDensityTests { 
         //teaspoon calculation tests (teapsoons => tablespoons; teaspoons => cups)

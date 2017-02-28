@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RachelBarnesMobileDevelopment.Models;
-namespace RachelBarnesMobileDevelopmentTests {
+namespace RachelsRosesMobileDevelopmentUnitTests {
     [TestClass]
     public class SplitTests {
         [TestMethod]
