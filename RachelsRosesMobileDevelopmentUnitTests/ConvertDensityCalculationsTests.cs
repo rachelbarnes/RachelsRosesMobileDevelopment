@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RachelBarnesMobileDevelopment.Models;
-namespace RachelsRosesMobileDevelopmentUnitTests {
+namespace RachelBarnesMobileDevelopmentTests {
     [TestClass]
     public class ConvertDensityTests {
         //ounces calculation tests

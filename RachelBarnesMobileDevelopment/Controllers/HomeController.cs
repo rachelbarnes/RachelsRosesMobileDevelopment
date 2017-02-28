@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace RachelBarnesMobileDevelopment.Controllers {
-    public class HomeController : Controller {
+    public class AccountCOntroller : Controller {
         public ActionResult Index() {
             return View();
         }
@@ -21,8 +21,5 @@ namespace RachelBarnesMobileDevelopment.Controllers {
 
             return View();
         }
-        //public ActionResult TestingEntityFramework() {
-        //    using (var db = new )
-        //}
     }
 }

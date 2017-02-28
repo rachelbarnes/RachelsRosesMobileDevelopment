@@ -10,11 +10,11 @@ namespace RachelBarnesMobileDevelopment {
         }
 
         public virtual DbSet<Cost> Costs { get; set; }
-        public virtual DbSet<IngredientConsumptionData> IngredientConsumptionDatas { get; set; }
-        public virtual DbSet<IngredientDensity> IngredientDensities { get; set; }
+        public virtual DbSet<IngredientConsumptionData> IngredientConsumptionData { get; set; }
+        public virtual DbSet<IngredientDensity> IngredientDensity { get; set; }
         public virtual DbSet<Ingredients> Ingredients { get; set; }
-        public virtual DbSet<IngredientSellingData> IngredientSellingDatas { get; set; }
-        public virtual DbSet<MyPantry> MyPantries { get; set; }
+        public virtual DbSet<IngredientSellingData> IngredientSellingData { get; set; }
+        public virtual DbSet<MyPantry> MyPantry { get; set; }
         public virtual DbSet<Recipe> Recipes { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder) {
@@ -25,7 +25,7 @@ namespace RachelBarnesMobileDevelopment {
             modelBuilder.Entity<Cost>()
                 .Property(e => e.price_per_ounce)
                 .HasPrecision(5, 2);
-
+            
             modelBuilder.Entity<IngredientConsumptionData>()
                 .Property(e => e.ounces_consumed)
                 .HasPrecision(6, 2);

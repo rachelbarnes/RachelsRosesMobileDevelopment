@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RachelBarnesMobileDevelopment.Models;
-namespace RachelsRosesMobileDevelopmentUnitTests {
+namespace RachelBarnesMobileDevelopmentUnitTests {
     [TestClass]
     public class ConvertTests {
         //the conversions can be done for measurements that have the whole name (cups, tablespoons, teaspoons) or for general abbreviations (c, table, T, tea, t)

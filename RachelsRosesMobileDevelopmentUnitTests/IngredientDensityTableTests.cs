@@ -12,7 +12,7 @@ namespace RachelsRosesMobileDevelopmentUnitTests {
         [TestMethod]
         public void InsertIngredientsIntoIngredientDensitiesTable() {
             var IDQ = new IngredientDensityTableQueries();
-            IDQ.InsertIngredientDensityData(); 
+            IDQ.insertIngredientDensityDictionaryIntoIngredientDensity(); 
             //var IDQ; 
 
         }

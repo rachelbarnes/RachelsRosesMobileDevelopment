@@ -80,8 +80,6 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -197,51 +195,33 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Capitalize.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\IngredientController.cs" />
-    <Compile Include="Controllers\MyPantryController.cs" />
+    <Compile Include="Controllers\MyPantry.cs" />
     <Compile Include="Controllers\CostController.cs" />
     <Compile Include="Controllers\SellingInformationController.cs" />
     <Compile Include="Controllers\RecipesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Cost.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Ingredient.cs" />
-    <Compile Include="Models\IngredientConsumptionData.cs" />
-    <Compile Include="Models\IngredientDensityQueries.cs" />
-    <Compile Include="Models\IngredientDensity.cs" />
-    <Compile Include="Models\IngredientSellingData.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="ConvertDensityCalculations.cs" />
+    <Compile Include="Models\ConvertDensityCalculationsModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="ConvertMeasurementCalculations.cs" />
-    <Compile Include="Models\IngredientDensitiesModel.cs" />
+    <Compile Include="Models\ConvertMeasurementCalculationsModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Exceptions.cs" />
-    <Compile Include="ConvertMeasurement.cs" />
+    <Compile Include="Models\ConvertMeasurementModel.cs" />
     <Compile Include="Models\Parse.cs" />
     <Compile Include="Models\IngredientsModel.cs" />
-    <Compile Include="Models\IngredientsTableModel.cs" />
-    <Compile Include="Models\RecipesTableModel.cs" />
-    <Compile Include="Models\RecipesObject.cs" />
+    <Compile Include="Models\RecipesModel.cs" />
     <Compile Include="Models\UsersModel.cs" />
-    <Compile Include="Models\Split.cs" />
-    <Compile Include="Models\MyPantry.cs" />
-    <Compile Include="Models\MyRecipesAndIngredientsDatabase.cs" />
+    <Compile Include="Models\SplitModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReadIngredientDensityFile.cs" />
-    <Compile Include="Models\Recipe.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\RachelsRoses.mdf" />
-    <Content Include="App_Data\RachelsRoses_log.ldf">
-      <DependentUpon>RachelsRoses.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -305,6 +285,7 @@
     <Content Include="Views\Account\Users.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Views\Costs\" />
     <Folder Include="Views\Density\" />
     <Folder Include="Views\Ingredients\" />

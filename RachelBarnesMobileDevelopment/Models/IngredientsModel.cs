@@ -9,8 +9,6 @@ using System;
 namespace RachelBarnesMobileDevelopment.Models {
 
     public class Ingredient {
-        public Ingredient() { }
-
         int id = 0;
         string name = "";
         string measurement = "";
@@ -24,6 +22,7 @@ namespace RachelBarnesMobileDevelopment.Models {
         string walmartName = "";
         bool doesIngredientNeedRestocking = false;
         bool isIngredientSoldInAPack = false;
+        public Ingredient() { }
         public Ingredient(string name, string measurement) {
             var _id = this.id;
             var _name = name;
