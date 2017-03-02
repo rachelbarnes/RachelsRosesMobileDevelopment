@@ -1,0 +1,393 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RachelsRosesMobileDevelopmentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RachelsRosesMobileDevelopment.dbo.Costs' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Costs">
+          <Key>
+            <PropertyRef Name="ingredient_id" />
+          </Key>
+          <Property Name="ingredient_id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="walmart_name" Type="nvarchar" MaxLength="250" />
+          <Property Name="walmart_item_id" Type="int" />
+          <Property Name="selling_weight" Type="nvarchar" MaxLength="50" />
+          <Property Name="selling_weight_in_ounces" Type="decimal" Precision="6" Scale="2" />
+          <Property Name="price_per_ounce" Type="decimal" Precision="5" Scale="2" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RachelsRosesMobileDevelopment.dbo.IngredientConsumptionData' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="IngredientConsumptionData">
+          <Key>
+            <PropertyRef Name="ingredient_id" />
+          </Key>
+          <Property Name="ingredient_id" Type="int" Nullable="false" />
+          <Property Name="measurement" Type="nvarchar" MaxLength="100" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="ounces_consumed" Type="decimal" Precision="6" Scale="2" />
+          <Property Name="ounces_remaining_at_time_of_use" Type="decimal" Precision="6" Scale="2" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RachelsRosesMobileDevelopment.dbo.IngredientDensities' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="IngredientDensities">
+          <Key>
+            <PropertyRef Name="density" />
+          </Key>
+          <Property Name="ingredient_type" Type="nvarchar" MaxLength="100" />
+          <Property Name="density" Type="decimal" Precision="4" Scale="2" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RachelsRosesMobileDevelopment.dbo.Ingredients' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Ingredients">
+          <Key>
+            <PropertyRef Name="ingredient_id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="measurement" />
+            <PropertyRef Name="type" />
+            <PropertyRef Name="classification" />
+            <PropertyRef Name="selling_weight" />
+          </Key>
+          <Property Name="ingredient_id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="70" Nullable="false" />
+          <Property Name="measurement" Type="nvarchar" MaxLength="70" Nullable="false" />
+          <Property Name="type" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="classification" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="selling_weight" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="recipe_id" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RachelsRosesMobileDevelopment.dbo.IngredientSellingData' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="IngredientSellingData">
+          <Key>
+            <PropertyRef Name="ingredient_id" />
+          </Key>
+          <Property Name="ingredient_id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="walmart_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="walmart_item_id" Type="int" />
+          <Property Name="selling_weight" Type="nvarchar" MaxLength="50" />
+          <Property Name="selling_price" Type="decimal" Precision="6" Scale="2" />
+          <Property Name="sold_in_packs" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RachelsRosesMobileDevelopment.dbo.MyPantry' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MyPantry">
+          <Key>
+            <PropertyRef Name="expiration_date" />
+            <PropertyRef Name="refill_needed" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="walmart_name" Type="nvarchar" MaxLength="250" />
+          <Property Name="walmart_item_id" Type="int" />
+          <Property Name="ounces_consumed_of_product" Type="decimal" Precision="7" Scale="2" />
+          <Property Name="ounces_remaining_of_product" Type="decimal" Precision="7" Scale="2" />
+          <Property Name="expiration_date" Type="datetime" Nullable="false" />
+          <Property Name="refill_needed" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RachelsRosesMobileDevelopment.dbo.Recipes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Recipes">
+          <Key>
+            <PropertyRef Name="recipe_id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="yield" />
+            <PropertyRef Name="aggregated_price" />
+            <PropertyRef Name="price_per_serving" />
+            <PropertyRef Name="no_of_ingredients" />
+          </Key>
+          <Property Name="recipe_id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="yield" Type="int" Nullable="false" />
+          <Property Name="aggregated_price" Type="decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="price_per_serving" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="no_of_ingredients" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="RachelsRosesMobileDevelopmentModelStoreContainer">
+          <EntitySet Name="Costs" EntityType="Self.Costs" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Costs].[ingredient_id] AS [ingredient_id], 
+    [Costs].[name] AS [name], 
+    [Costs].[walmart_name] AS [walmart_name], 
+    [Costs].[walmart_item_id] AS [walmart_item_id], 
+    [Costs].[selling_weight] AS [selling_weight], 
+    [Costs].[selling_weight_in_ounces] AS [selling_weight_in_ounces], 
+    [Costs].[price_per_ounce] AS [price_per_ounce]
+    FROM [dbo].[Costs] AS [Costs]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="IngredientConsumptionData" EntityType="Self.IngredientConsumptionData" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [IngredientConsumptionData].[ingredient_id] AS [ingredient_id], 
+    [IngredientConsumptionData].[measurement] AS [measurement], 
+    [IngredientConsumptionData].[name] AS [name], 
+    [IngredientConsumptionData].[ounces_consumed] AS [ounces_consumed], 
+    [IngredientConsumptionData].[ounces_remaining_at_time_of_use] AS [ounces_remaining_at_time_of_use]
+    FROM [dbo].[IngredientConsumptionData] AS [IngredientConsumptionData]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="IngredientDensities" EntityType="Self.IngredientDensities" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [IngredientDensities].[ingredient_type] AS [ingredient_type], 
+    [IngredientDensities].[density] AS [density]
+    FROM [dbo].[IngredientDensities] AS [IngredientDensities]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Ingredients" EntityType="Self.Ingredients" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Ingredients].[ingredient_id] AS [ingredient_id], 
+    [Ingredients].[name] AS [name], 
+    [Ingredients].[measurement] AS [measurement], 
+    [Ingredients].[type] AS [type], 
+    [Ingredients].[classification] AS [classification], 
+    [Ingredients].[selling_weight] AS [selling_weight], 
+    [Ingredients].[recipe_id] AS [recipe_id]
+    FROM [dbo].[Ingredients] AS [Ingredients]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="IngredientSellingData" EntityType="Self.IngredientSellingData" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [IngredientSellingData].[ingredient_id] AS [ingredient_id], 
+    [IngredientSellingData].[name] AS [name], 
+    [IngredientSellingData].[walmart_name] AS [walmart_name], 
+    [IngredientSellingData].[walmart_item_id] AS [walmart_item_id], 
+    [IngredientSellingData].[selling_weight] AS [selling_weight], 
+    [IngredientSellingData].[selling_price] AS [selling_price], 
+    [IngredientSellingData].[sold_in_packs] AS [sold_in_packs]
+    FROM [dbo].[IngredientSellingData] AS [IngredientSellingData]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="MyPantry" EntityType="Self.MyPantry" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [MyPantry].[name] AS [name], 
+    [MyPantry].[walmart_name] AS [walmart_name], 
+    [MyPantry].[walmart_item_id] AS [walmart_item_id], 
+    [MyPantry].[ounces_consumed_of_product] AS [ounces_consumed_of_product], 
+    [MyPantry].[ounces_remaining_of_product] AS [ounces_remaining_of_product], 
+    [MyPantry].[expiration_date] AS [expiration_date], 
+    [MyPantry].[refill_needed] AS [refill_needed]
+    FROM [dbo].[MyPantry] AS [MyPantry]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Recipes" EntityType="Self.Recipes" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Recipes].[recipe_id] AS [recipe_id], 
+    [Recipes].[name] AS [name], 
+    [Recipes].[yield] AS [yield], 
+    [Recipes].[aggregated_price] AS [aggregated_price], 
+    [Recipes].[price_per_serving] AS [price_per_serving], 
+    [Recipes].[no_of_ingredients] AS [no_of_ingredients]
+    FROM [dbo].[Recipes] AS [Recipes]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RachelsRosesMobileDevelopmentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Costs">
+          <Key>
+            <PropertyRef Name="ingredient_id" />
+          </Key>
+          <Property Name="ingredient_id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="walmart_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="walmart_item_id" Type="Int32" />
+          <Property Name="selling_weight" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="selling_weight_in_ounces" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="price_per_ounce" Type="Decimal" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="IngredientConsumptionData">
+          <Key>
+            <PropertyRef Name="ingredient_id" />
+          </Key>
+          <Property Name="ingredient_id" Type="Int32" Nullable="false" />
+          <Property Name="measurement" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ounces_consumed" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="ounces_remaining_at_time_of_use" Type="Decimal" Precision="6" Scale="2" />
+        </EntityType>
+        <EntityType Name="IngredientDensities">
+          <Key>
+            <PropertyRef Name="density" />
+          </Key>
+          <Property Name="ingredient_type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="density" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ingredients">
+          <Key>
+            <PropertyRef Name="ingredient_id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="measurement" />
+            <PropertyRef Name="type" />
+            <PropertyRef Name="classification" />
+            <PropertyRef Name="selling_weight" />
+          </Key>
+          <Property Name="ingredient_id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="measurement" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="classification" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="selling_weight" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="recipe_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="IngredientSellingData">
+          <Key>
+            <PropertyRef Name="ingredient_id" />
+          </Key>
+          <Property Name="ingredient_id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="walmart_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="walmart_item_id" Type="Int32" />
+          <Property Name="selling_weight" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="selling_price" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="sold_in_packs" Type="Int32" />
+        </EntityType>
+        <EntityType Name="MyPantry">
+          <Key>
+            <PropertyRef Name="expiration_date" />
+            <PropertyRef Name="refill_needed" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="walmart_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="walmart_item_id" Type="Int32" />
+          <Property Name="ounces_consumed_of_product" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="ounces_remaining_of_product" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="expiration_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="refill_needed" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Recipes">
+          <Key>
+            <PropertyRef Name="recipe_id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="yield" />
+            <PropertyRef Name="aggregated_price" />
+            <PropertyRef Name="price_per_serving" />
+            <PropertyRef Name="no_of_ingredients" />
+          </Key>
+          <Property Name="recipe_id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="yield" Type="Int32" Nullable="false" />
+          <Property Name="aggregated_price" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="price_per_serving" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="no_of_ingredients" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="RachelsRosesMobileDevelopmentEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Costs" EntityType="Self.Costs" />
+          <EntitySet Name="IngredientConsumptionData" EntityType="Self.IngredientConsumptionData" />
+          <EntitySet Name="IngredientDensities" EntityType="Self.IngredientDensities" />
+          <EntitySet Name="Ingredients" EntityType="Self.Ingredients" />
+          <EntitySet Name="IngredientSellingData" EntityType="Self.IngredientSellingData" />
+          <EntitySet Name="MyPantry" EntityType="Self.MyPantry" />
+          <EntitySet Name="Recipes" EntityType="Self.Recipes" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RachelsRosesMobileDevelopmentModelStoreContainer" CdmEntityContainer="RachelsRosesMobileDevelopmentEntities">
+          <EntitySetMapping Name="Costs">
+            <EntityTypeMapping TypeName="RachelsRosesMobileDevelopmentModel.Costs">
+              <MappingFragment StoreEntitySet="Costs">
+                <ScalarProperty Name="ingredient_id" ColumnName="ingredient_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="walmart_name" ColumnName="walmart_name" />
+                <ScalarProperty Name="walmart_item_id" ColumnName="walmart_item_id" />
+                <ScalarProperty Name="selling_weight" ColumnName="selling_weight" />
+                <ScalarProperty Name="selling_weight_in_ounces" ColumnName="selling_weight_in_ounces" />
+                <ScalarProperty Name="price_per_ounce" ColumnName="price_per_ounce" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IngredientConsumptionData">
+            <EntityTypeMapping TypeName="RachelsRosesMobileDevelopmentModel.IngredientConsumptionData">
+              <MappingFragment StoreEntitySet="IngredientConsumptionData">
+                <ScalarProperty Name="ingredient_id" ColumnName="ingredient_id" />
+                <ScalarProperty Name="measurement" ColumnName="measurement" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="ounces_consumed" ColumnName="ounces_consumed" />
+                <ScalarProperty Name="ounces_remaining_at_time_of_use" ColumnName="ounces_remaining_at_time_of_use" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IngredientDensities">
+            <EntityTypeMapping TypeName="RachelsRosesMobileDevelopmentModel.IngredientDensities">
+              <MappingFragment StoreEntitySet="IngredientDensities">
+                <ScalarProperty Name="ingredient_type" ColumnName="ingredient_type" />
+                <ScalarProperty Name="density" ColumnName="density" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ingredients">
+            <EntityTypeMapping TypeName="RachelsRosesMobileDevelopmentModel.Ingredients">
+              <MappingFragment StoreEntitySet="Ingredients">
+                <ScalarProperty Name="ingredient_id" ColumnName="ingredient_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="measurement" ColumnName="measurement" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="classification" ColumnName="classification" />
+                <ScalarProperty Name="selling_weight" ColumnName="selling_weight" />
+                <ScalarProperty Name="recipe_id" ColumnName="recipe_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IngredientSellingData">
+            <EntityTypeMapping TypeName="RachelsRosesMobileDevelopmentModel.IngredientSellingData">
+              <MappingFragment StoreEntitySet="IngredientSellingData">
+                <ScalarProperty Name="ingredient_id" ColumnName="ingredient_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="walmart_name" ColumnName="walmart_name" />
+                <ScalarProperty Name="walmart_item_id" ColumnName="walmart_item_id" />
+                <ScalarProperty Name="selling_weight" ColumnName="selling_weight" />
+                <ScalarProperty Name="selling_price" ColumnName="selling_price" />
+                <ScalarProperty Name="sold_in_packs" ColumnName="sold_in_packs" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MyPantry">
+            <EntityTypeMapping TypeName="RachelsRosesMobileDevelopmentModel.MyPantry">
+              <MappingFragment StoreEntitySet="MyPantry">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="walmart_name" ColumnName="walmart_name" />
+                <ScalarProperty Name="walmart_item_id" ColumnName="walmart_item_id" />
+                <ScalarProperty Name="ounces_consumed_of_product" ColumnName="ounces_consumed_of_product" />
+                <ScalarProperty Name="ounces_remaining_of_product" ColumnName="ounces_remaining_of_product" />
+                <ScalarProperty Name="expiration_date" ColumnName="expiration_date" />
+                <ScalarProperty Name="refill_needed" ColumnName="refill_needed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recipes">
+            <EntityTypeMapping TypeName="RachelsRosesMobileDevelopmentModel.Recipes">
+              <MappingFragment StoreEntitySet="Recipes">
+                <ScalarProperty Name="recipe_id" ColumnName="recipe_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="yield" ColumnName="yield" />
+                <ScalarProperty Name="aggregated_price" ColumnName="aggregated_price" />
+                <ScalarProperty Name="price_per_serving" ColumnName="price_per_serving" />
+                <ScalarProperty Name="no_of_ingredients" ColumnName="no_of_ingredients" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
