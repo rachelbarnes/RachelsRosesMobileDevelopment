@@ -14,7 +14,8 @@ namespace RachelBarnesMobileDevelopment
     
     public partial class IngredientDensities
     {
-        public string ingredient_type { get; set; }
-        public decimal density { get; set; }
+        public int IngredientDensityId { get; set; }
+        public string IngredientName { get; set; }
+        public Nullable<decimal> IngredientDensity { get; set; }
     }
 }

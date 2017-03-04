@@ -1,6 +1,14 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Test Page";
 }
+
+@if (ViewBag.InnerExceptionMessage != null || string.IsNullOrEmpty(ViewBag.InnerExceptionMessage)) {
+    <h4>ViewBag.InnerExceptionMessage</h4>
+}
+
+<p>Insert value into Ingredent Density Test</p>
+
+<a href="/home/IngredientDensityTest">Try this on for size!</a>
 
 <div class="jumbotron">
     <h1>ASP.NET</h1>

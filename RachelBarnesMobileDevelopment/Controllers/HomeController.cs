@@ -21,14 +21,20 @@ namespace RachelBarnesMobileDevelopment.Controllers {
 
             return View();
         }
-        public ActionResult IngredientDensityTest() {
-            var context = new RachelsRosesMobileDevelopmentEntities(); 
+        public ActionResult IDTest() {
+            var context = new RachelsRosesMobileDevelopmentEntities();
             var IngDen = new IngredientDensities();
-            IngDen.ingredient_type = "all purpose flour";
-            IngDen.density = 5m;
-            context.IngredientDensities.Add(IngDen);
-            context.SaveChanges();
-            return View();       
+            //IngDen.IngredientDensityId = 1; //as the primary key, this shouldn't really let me do this...
+            try {
+                IngDen.IngredientName = "all purpose flour";
+                IngDen.IngredientDensity = 5m;
+                //context.IngredientDensities.Add(IngDen);
+                context.IngredientDensities.Add(IngDen);
+                context.SaveChanges();
+            } catch (Exception e) {
+                ViewBag.InnerExceptionMessage = e.ToString();
+            }
+            return View();
         }
     }
 }

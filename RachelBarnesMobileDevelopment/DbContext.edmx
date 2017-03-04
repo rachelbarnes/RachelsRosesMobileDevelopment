@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="RachelsRosesMobileDevelopmentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="RachelsRosesMobileDevelopmentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errors Found During Generation:
 warning 6002: The table/view 'RachelsRosesMobileDevelopment.dbo.Costs' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Costs">
@@ -31,14 +31,13 @@ warning 6002: The table/view 'RachelsRosesMobileDevelopment.dbo.IngredientConsum
           <Property Name="ounces_consumed" Type="decimal" Precision="6" Scale="2" />
           <Property Name="ounces_remaining_at_time_of_use" Type="decimal" Precision="6" Scale="2" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'RachelsRosesMobileDevelopment.dbo.IngredientDensities' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="IngredientDensities">
           <Key>
-            <PropertyRef Name="density" />
+            <PropertyRef Name="IngredientDensityId" />
           </Key>
-          <Property Name="ingredient_type" Type="nvarchar" MaxLength="100" />
-          <Property Name="density" Type="decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="IngredientDensityId" Type="int" Nullable="false" />
+          <Property Name="IngredientName" Type="nvarchar" MaxLength="60" />
+          <Property Name="IngredientDensity" Type="decimal" Precision="5" Scale="2" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'RachelsRosesMobileDevelopment.dbo.Ingredients' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -107,6 +106,7 @@ warning 6002: The table/view 'RachelsRosesMobileDevelopment.dbo.Recipes' does no
           <Property Name="no_of_ingredients" Type="int" Nullable="false" />
         </EntityType>
         <EntityContainer Name="RachelsRosesMobileDevelopmentModelStoreContainer">
+          <EntitySet Name="IngredientDensities" EntityType="Self.IngredientDensities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Costs" EntityType="Self.Costs" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Costs].[ingredient_id] AS [ingredient_id], 
@@ -126,12 +126,6 @@ warning 6002: The table/view 'RachelsRosesMobileDevelopment.dbo.Recipes' does no
     [IngredientConsumptionData].[ounces_consumed] AS [ounces_consumed], 
     [IngredientConsumptionData].[ounces_remaining_at_time_of_use] AS [ounces_remaining_at_time_of_use]
     FROM [dbo].[IngredientConsumptionData] AS [IngredientConsumptionData]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="IngredientDensities" EntityType="Self.IngredientDensities" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [IngredientDensities].[ingredient_type] AS [ingredient_type], 
-    [IngredientDensities].[density] AS [density]
-    FROM [dbo].[IngredientDensities] AS [IngredientDensities]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="Ingredients" EntityType="Self.Ingredients" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -177,8 +171,7 @@ warning 6002: The table/view 'RachelsRosesMobileDevelopment.dbo.Recipes' does no
     FROM [dbo].[Recipes] AS [Recipes]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RachelsRosesMobileDevelopmentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -206,10 +199,11 @@ warning 6002: The table/view 'RachelsRosesMobileDevelopment.dbo.Recipes' does no
         </EntityType>
         <EntityType Name="IngredientDensities">
           <Key>
-            <PropertyRef Name="density" />
+            <PropertyRef Name="IngredientDensityId" />
           </Key>
-          <Property Name="ingredient_type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="density" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="IngredientDensityId" Type="Int32" Nullable="false" />
+          <Property Name="IngredientName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="IngredientDensity" Type="Decimal" Precision="5" Scale="2" />
         </EntityType>
         <EntityType Name="Ingredients">
           <Key>
@@ -311,8 +305,9 @@ warning 6002: The table/view 'RachelsRosesMobileDevelopment.dbo.Recipes' does no
           <EntitySetMapping Name="IngredientDensities">
             <EntityTypeMapping TypeName="RachelsRosesMobileDevelopmentModel.IngredientDensities">
               <MappingFragment StoreEntitySet="IngredientDensities">
-                <ScalarProperty Name="ingredient_type" ColumnName="ingredient_type" />
-                <ScalarProperty Name="density" ColumnName="density" />
+                <ScalarProperty Name="IngredientDensity" ColumnName="IngredientDensity" />
+                <ScalarProperty Name="IngredientName" ColumnName="IngredientName" />
+                <ScalarProperty Name="IngredientDensityId" ColumnName="IngredientDensityId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
