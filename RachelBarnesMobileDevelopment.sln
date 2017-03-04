@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RachelBarnesMobileDevelopme
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RachelsRosesMobileDevelopmentUnitTests", "RachelsRosesMobileDevelopmentUnitTests\RachelsRosesMobileDevelopmentUnitTests.csproj", "{EA020BA5-A782-4A11-8334-A394F307E5EF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTests", "IntegrationTests\IntegrationTests.csproj", "{18ED25B5-B265-42CC-B621-827FDB39391C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{EA020BA5-A782-4A11-8334-A394F307E5EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA020BA5-A782-4A11-8334-A394F307E5EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA020BA5-A782-4A11-8334-A394F307E5EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18ED25B5-B265-42CC-B621-827FDB39391C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18ED25B5-B265-42CC-B621-827FDB39391C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18ED25B5-B265-42CC-B621-827FDB39391C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18ED25B5-B265-42CC-B621-827FDB39391C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

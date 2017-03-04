@@ -25,12 +25,6 @@ namespace RachelBarnesMobileDevelopment
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Costs> Costs { get; set; }
-        public virtual DbSet<IngredientConsumptionData> IngredientConsumptionData { get; set; }
         public virtual DbSet<IngredientDensities> IngredientDensities { get; set; }
-        public virtual DbSet<Ingredients> Ingredients { get; set; }
-        public virtual DbSet<IngredientSellingData> IngredientSellingData { get; set; }
-        public virtual DbSet<MyPantry> MyPantry { get; set; }
-        public virtual DbSet<Recipes> Recipes { get; set; }
     }
 }

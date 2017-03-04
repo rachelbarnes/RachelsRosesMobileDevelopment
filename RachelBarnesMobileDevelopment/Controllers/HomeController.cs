@@ -22,19 +22,21 @@ namespace RachelBarnesMobileDevelopment.Controllers {
             return View();
         }
         public ActionResult IDTest() {
-            var context = new RachelsRosesMobileDevelopmentEntities();
-            var IngDen = new IngredientDensities();
-            //IngDen.IngredientDensityId = 1; //as the primary key, this shouldn't really let me do this...
-            try {
-                IngDen.IngredientName = "all purpose flour";
-                IngDen.IngredientDensity = 5m;
-                //context.IngredientDensities.Add(IngDen);
-                context.IngredientDensities.Add(IngDen);
-                context.SaveChanges();
-            } catch (Exception e) {
-                ViewBag.InnerExceptionMessage = e.ToString();
+            using (var context = new RachelsRosesMobileDevelopmentEntities()) {
+                var db = new DatabaseStuff();
+                db.RecreateDatabase(context);
+                var IngDen = new IngredientDensities();
+                try {
+                    IngDen.Name= "all purpose flour";
+                    IngDen.Density= 5m;
+                    //context.IngredientDensities.Add(IngDen);
+                    context.IngredientDensities.Add(IngDen);
+                    context.SaveChanges();
+                } catch (Exception e) {
+                    ViewBag.InnerExceptionMessage = e.ToString();
+                }
+                return View();
             }
-            return View();
         }
     }
 }
