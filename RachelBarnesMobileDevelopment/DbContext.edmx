@@ -35,7 +35,7 @@ warning 6002: The table/view 'RachelsRosesMobileDevelopment.dbo.IngredientConsum
           <Key>
             <PropertyRef Name="IngredientDensityId" />
           </Key>
-          <Property Name="IngredientDensityId" Type="int" Nullable="false" />
+          <Property Name="IngredientDensityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IngredientName" Type="nvarchar" MaxLength="60" />
           <Property Name="IngredientDensity" Type="decimal" Precision="5" Scale="2" />
         </EntityType>
