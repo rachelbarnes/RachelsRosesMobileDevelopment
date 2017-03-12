@@ -13,8 +13,33 @@
           <Property Name="Name" Type="nvarchar" MaxLength="60" />
           <Property Name="Density" Type="decimal" Precision="5" Scale="2" />
         </EntityType>
+        <EntityType Name="Ingredients">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="70" />
+          <Property Name="Recipe_Id" Type="int" />
+          <Property Name="Measurement" Type="nvarchar" MaxLength="70" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="Classification" Type="nvarchar" MaxLength="50" />
+          <Property Name="Selling_Weight" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Pantry">
+          <Key>
+            <PropertyRef Name="Pantry_Id" />
+          </Key>
+          <Property Name="Pantry_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="Ounces_Consumed" Type="decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="Ounces_Remaining" Type="decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="Expired" Type="int" Nullable="false" />
+          <Property Name="Expiring_Soon" Type="int" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="RachelsRosesMobileDevelopmentModelStoreContainer">
           <EntitySet Name="IngredientDensities" EntityType="Self.IngredientDensities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ingredients" EntityType="Self.Ingredients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pantry" EntityType="Self.Pantry" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -30,7 +55,32 @@
         </EntityType>
         <EntityContainer Name="RachelsRosesMobileDevelopmentEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="IngredientDensities" EntityType="Self.IngredientDensities" />
+          <EntitySet Name="Ingredients" EntityType="RachelsRosesMobileDevelopmentModel.Ingredients" />
+          <EntitySet Name="Pantry" EntityType="RachelsRosesMobileDevelopmentModel.Pantry" />
           </EntityContainer>
+        <EntityType Name="Ingredients">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Recipe_Id" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="Measurement" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Classification" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Selling_Weight" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Pantry">
+          <Key>
+            <PropertyRef Name="Pantry_Id" />
+          </Key>
+          <Property Name="Pantry_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Ounces_Consumed" Type="Decimal" Nullable="false" Precision="6" Scale="2" />
+          <Property Name="Ounces_Remaining" Type="Decimal" Nullable="false" Precision="6" Scale="2" />
+          <Property Name="Expired" Type="Int32" Nullable="false" />
+          <Property Name="Expiring_Soon" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -43,6 +93,31 @@
                 <ScalarProperty Name="Density" ColumnName="Density" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ingredients">
+            <EntityTypeMapping TypeName="RachelsRosesMobileDevelopmentModel.Ingredients">
+              <MappingFragment StoreEntitySet="Ingredients">
+                <ScalarProperty Name="Selling_Weight" ColumnName="Selling_Weight" />
+                <ScalarProperty Name="Classification" ColumnName="Classification" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Measurement" ColumnName="Measurement" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Recipe_Id" ColumnName="Recipe_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pantry">
+            <EntityTypeMapping TypeName="RachelsRosesMobileDevelopmentModel.Pantry">
+              <MappingFragment StoreEntitySet="Pantry">
+                <ScalarProperty Name="Expiring_Soon" ColumnName="Expiring_Soon" />
+                <ScalarProperty Name="Expired" ColumnName="Expired" />
+                <ScalarProperty Name="Ounces_Remaining" ColumnName="Ounces_Remaining" />
+                <ScalarProperty Name="Ounces_Consumed" ColumnName="Ounces_Consumed" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Pantry_Id" ColumnName="Pantry_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

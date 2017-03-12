@@ -21,3 +21,15 @@ Stories:
 	- unless the name is exact, i don't get a response... there's no grace in the name
 		- do a try catch here... try the response and in the catch give a list of ingredient names/itemresponse names from 
 			a table in the database and have the user in the UI choose one of those, then use the information from tha name
+
+ - make a table for the conversions of weights to ounces? 
+	- can easily do this with my weight conversion with a Dictionary<string, decimal> for the weight as the string, and the amount of ounces for the weight as the decimal, adn then put the decimal in a weight conversion table
+
+ - i want to make a table of all the selling prices for the ingredient name, weight, etc. of an ingredient, and then giving the average selling price
+	- instead of adding the same price over and over again, have the number of times a seling weight is the same
+		- columns:
+			 - name: bread flour
+			 - selling weight: 5 lb
+			 - selling price: 4.69, 3.49
+			 - count of ingredient instances in table: 4 (so there would be 4 times bread flour was inserted in this table...), 3
+					this should eliminate the problem of having a massive amount of rows)
