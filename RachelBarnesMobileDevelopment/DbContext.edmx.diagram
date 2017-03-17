@@ -8,6 +8,9 @@
         <EntityTypeShape EntityType="RachelsRosesMobileDevelopmentModel.IngredientDensities" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="RachelsRosesMobileDevelopmentModel.Ingredients" Width="1.5" PointX="2.375" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="RachelsRosesMobileDevelopmentModel.Pantry" Width="1.5" PointX="4.375" PointY="0.75" />
+        <EntityTypeShape EntityType="RachelsRosesMobileDevelopmentModel.IngredientConsumption" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="RachelsRosesMobileDevelopmentModel.Costs" Width="1.5" PointX="4.375" PointY="4.75" />
+        <EntityTypeShape EntityType="RachelsRosesMobileDevelopmentModel.SellingInformation" Width="1.5" PointX="6.375" PointY="0.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -12,14 +12,11 @@ namespace RachelBarnesMobileDevelopment
     using System;
     using System.Collections.Generic;
     
-    public partial class Pantry
+    public partial class SellingInformation
     {
-        public int Pantry_Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
-        public decimal Ounces_Consumed { get; set; }
-        public decimal Ounces_Remaining { get; set; }
-        public int Expired { get; set; }
-        public int Expiring_Soon { get; set; }
-        public int Restock_Required { get; set; }
+        public string Selling_Weight { get; set; }
+        public Nullable<decimal> Selling_Weight_Ounces { get; set; }
     }
 }

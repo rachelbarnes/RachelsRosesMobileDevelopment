@@ -28,5 +28,8 @@ namespace RachelBarnesMobileDevelopment
         public virtual DbSet<IngredientDensities> IngredientDensities { get; set; }
         public virtual DbSet<Ingredients> Ingredients { get; set; }
         public virtual DbSet<Pantry> Pantry { get; set; }
+        public virtual DbSet<IngredientConsumption> IngredientConsumption { get; set; }
+        public virtual DbSet<Costs> Costs { get; set; }
+        public virtual DbSet<SellingInformation> SellingInformation { get; set; }
     }
 }
