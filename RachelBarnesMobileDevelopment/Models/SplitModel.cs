@@ -45,6 +45,7 @@ namespace RachelBarnesMobileDevelopment.Models {
             }
             return split;
         }
+        //splits a triple level measurement
         public string[] SplitTripleLayerMeasurement(string multiLevelMeasurement) {
             var firstSplitLevelMeasurement = SplitDoubleLayerMeasurement(multiLevelMeasurement);
             var fullSplitLevelMeasurement = new string[] { };
@@ -63,6 +64,7 @@ namespace RachelBarnesMobileDevelopment.Models {
             }
             return split;
         }
+        //splits a quad level measurement
         public string[] SplitQuadLayerMeasurement(string multiLevelMeasurement) {
             var firstSplitLevelMeasurement = SplitDoubleLayerMeasurement(multiLevelMeasurement);
             var secondSplitLevelMeasurement = SplitTripleLayerMeasurement(firstSplitLevelMeasurement[1]);
@@ -81,17 +83,19 @@ namespace RachelBarnesMobileDevelopment.Models {
             return split;
         }
         public string[] SplitMeasurementOrDensity(string measurementToBeSplit) {
-            //i have " c ", etc. with spaces to distinguish them from the teaspoons, tablespoons and cups when doing the parsing; 
-                //i don't want to get extra in my count
-            var measurements = new string[] { "cup", "pinch", "gram", "tea", "table" };
+            var measurements = new string[] { "cup", "pinch", "gram", "tea", "table", "oz", "ounce", "gall", "pint", "quart", "half", "1/2", "lb", "pound" };
             var split = new string[] { };
             var count = 0;
             foreach (var meas in measurements) {
                 if (measurementToBeSplit.Contains(meas))
                     count++;
+                if (count == 4)
+                    break; //maybe an exception here would do well? 
             }
+            if (count == 0)
+                return split = new string[] { measurementToBeSplit }; 
             if (count == 1)
-                return split = new string[] { measurementToBeSplit };
+                return split = SplitSingleMeasurementOrDensity(measurementToBeSplit);
             else if (count == 2)
                 return split = SplitDoubleLayerMeasurement(measurementToBeSplit);
             else if (count == 3)

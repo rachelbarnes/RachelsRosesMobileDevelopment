@@ -1,9 +1,46 @@
 ﻿@{
     ViewBag.Title = "RecipesBasePage";
 }
+<h3>Your Recipes: </h3>
 
 <h3>Your Recipes Home Page</h3>
+<p>Recipe Name: <input</p>
+<button>Add a Recipe</button>
 <table>
-    <tr></tr>
-    <tr>Recipe Id</tr>
+    <tr>
+        <th>Recipe Id</th>
+        <th>Name</th>
+        <th>Yield</th>
+        <th>Total Price</th>
+        <th>Price Per Serving</th>
+    </tr>
+    @foreach (var recipe in ViewBag.Recipes) {
+        <tr>
+        <td>Recipe Id</td>
+        <td>Name</td>
+        <td>Yield</td>
+        <td>Total Price</td>
+        <td>Price Per Serving</td>
+    </tr>
+    }
 </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<p>Recipe Name: <strong data-bind="text: recipeName"></strong></p>*@

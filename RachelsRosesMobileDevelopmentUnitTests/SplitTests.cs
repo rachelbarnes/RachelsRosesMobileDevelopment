@@ -125,5 +125,47 @@ namespace RachelBarnesMobileDevelopmentTests {
             var actual = split.SplitMeasurementOrDensity("12 1/4 cup 1 tablespoon 1/3 teaspoon 2 pinches");
             CollectionAssert.AreEqual(expected, actual); 
         }
+        [TestMethod]
+        public void TestSplitWeight() {
+            var split = new Split();
+            var expected = new string[] { "1", "lb" };
+            var actual = split.SplitSingleMeasurementOrDensity("1 lb");
+            CollectionAssert.AreEqual(expected, actual); 
+        }
+        [TestMethod]
+        public void TestSplitWeight2() {
+            var split = new Split();
+            var expected = new string[] { "16", "oz" };
+            var actual = split.SplitSingleMeasurementOrDensity("16 oz");
+            CollectionAssert.AreEqual(expected, actual); 
+        }
+        [TestMethod]
+        public void TestSplitWeight3() {
+            var split = new Split();
+            var expected = new string[] { "5", "lb" };
+            var actual = split.SplitSingleMeasurementOrDensity("5 lb");
+            CollectionAssert.AreEqual(expected, actual); 
+        }
+        //[TestMethod]
+        //public void TestSplitWeight4() {
+        //    var split = new Split();
+        //    var expected = new string[] { "1", "lb" };
+        //    var actual = split.SplitSingleMeasurementOrDensity("1 lb");
+        //    Assert.AreEqual(expected, actual); 
+        //}
+        //[TestMethod]
+        //public void TestSplitWeight5() {
+        //    var split = new Split();
+        //    var expected = new string[] { "1", "lb" };
+        //    var actual = split.SplitSingleMeasurementOrDensity("1 lb");
+        //    Assert.AreEqual(expected, actual); 
+        //}
+        //[TestMethod]
+        //public void TestSplitWeight6() {
+        //    var split = new Split();
+        //    var expected = new string[] { "1", "lb" };
+        //    var actual = split.SplitSingleMeasurementOrDensity("1 lb");
+        //    Assert.AreEqual(expected, actual); 
+        //}
     }
 }

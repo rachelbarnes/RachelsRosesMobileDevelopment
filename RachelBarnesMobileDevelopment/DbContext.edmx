@@ -58,6 +58,17 @@
           <Property Name="Expiring_Soon" Type="int" Nullable="false" />
           <Property Name="Restock_Required" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Recipes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="Yield" Type="int" Nullable="false" />
+          <Property Name="TotalPrice" Type="decimal" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="PricePerYield" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="HaveEnoughToMakeCurrently" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="SellingInformation">
           <Key>
             <PropertyRef Name="Id" />
@@ -73,27 +84,21 @@
           <EntitySet Name="IngredientDensities" EntityType="Self.IngredientDensities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ingredients" EntityType="Self.Ingredients" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pantry" EntityType="Self.Pantry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Recipes" EntityType="Self.Recipes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SellingInformation" EntityType="Self.SellingInformation" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RachelsRosesMobileDevelopmentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="IngredientDensities">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
-          <Property Name="Density" Type="Decimal" Precision="5" Scale="2" />
-        </EntityType>
         <EntityContainer Name="RachelsRosesMobileDevelopmentEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="IngredientDensities" EntityType="Self.IngredientDensities" />
           <EntitySet Name="Ingredients" EntityType="RachelsRosesMobileDevelopmentModel.Ingredients" />
           <EntitySet Name="Pantry" EntityType="RachelsRosesMobileDevelopmentModel.Pantry" />
           <EntitySet Name="IngredientConsumption" EntityType="RachelsRosesMobileDevelopmentModel.IngredientConsumption" />
           <EntitySet Name="Costs" EntityType="RachelsRosesMobileDevelopmentModel.Costs" />
           <EntitySet Name="SellingInformation" EntityType="RachelsRosesMobileDevelopmentModel.SellingInformation" />
+          <EntitySet Name="Recipes" EntityType="RachelsRosesMobileDevelopmentModel.Recipes" />
+          <EntitySet Name="IngredientDensities" EntityType="RachelsRosesMobileDevelopmentModel.IngredientDensities" />
           </EntityContainer>
         <EntityType Name="Ingredients">
           <Key>
@@ -149,21 +154,31 @@
           <Property Name="Selling_Weight" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Selling_Weight_Ounces" Type="Decimal" Precision="6" Scale="2" />
         </EntityType>
+        <EntityType Name="Recipes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="Yield" Type="Int32" Nullable="false" />
+          <Property Name="TotalPrice" Type="Decimal" Nullable="false" Precision="7" Scale="2" />
+          <Property Name="PricePerYield" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="HaveEnoughToMakeCurrently" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IngredientDensities">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Density" Type="Decimal" Precision="5" Scale="2" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="RachelsRosesMobileDevelopmentModelStoreContainer" CdmEntityContainer="RachelsRosesMobileDevelopmentEntities">
-          <EntitySetMapping Name="IngredientDensities">
-            <EntityTypeMapping TypeName="RachelsRosesMobileDevelopmentModel.IngredientDensities">
-              <MappingFragment StoreEntitySet="IngredientDensities">
-                <ScalarProperty Name="Density" ColumnName="Density" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Ingredients">
             <EntityTypeMapping TypeName="RachelsRosesMobileDevelopmentModel.Ingredients">
               <MappingFragment StoreEntitySet="Ingredients">
@@ -218,6 +233,27 @@
               <MappingFragment StoreEntitySet="SellingInformation">
                 <ScalarProperty Name="Selling_Weight_Ounces" ColumnName="Selling_Weight_Ounces" />
                 <ScalarProperty Name="Selling_Weight" ColumnName="Selling_Weight" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recipes">
+            <EntityTypeMapping TypeName="RachelsRosesMobileDevelopmentModel.Recipes">
+              <MappingFragment StoreEntitySet="Recipes">
+                <ScalarProperty Name="HaveEnoughToMakeCurrently" ColumnName="HaveEnoughToMakeCurrently" />
+                <ScalarProperty Name="PricePerYield" ColumnName="PricePerYield" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="Yield" ColumnName="Yield" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IngredientDensities">
+            <EntityTypeMapping TypeName="RachelsRosesMobileDevelopmentModel.IngredientDensities">
+              <MappingFragment StoreEntitySet="IngredientDensities">
+                <ScalarProperty Name="Density" ColumnName="Density" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

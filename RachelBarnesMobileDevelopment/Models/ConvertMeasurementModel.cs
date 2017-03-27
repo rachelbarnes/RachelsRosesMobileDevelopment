@@ -29,6 +29,7 @@ namespace RachelBarnesMobileDevelopment.Models {
             }
             return aggregatedTeaspoons;
         }
+        //multiplier methods
         public decimal Multiplier(decimal changeTo, decimal changeFrom) {
             return changeTo / changeFrom;
         }
@@ -53,6 +54,7 @@ namespace RachelBarnesMobileDevelopment.Models {
             var changeFromDecimal = parse.ParseFractionToDecimal(changeFrom);
             return parse.ParseDecimalToFraction(Math.Round((changeToDecimal / changeFromDecimal), 2));
         }
+        //adjusted teaspoons methods
         public decimal AdjustedTeaspoons(decimal aggregatedTeaspoons, decimal multiplier) {
             return decimal.Round((aggregatedTeaspoons * multiplier), 2);
         }
@@ -166,6 +168,35 @@ namespace RachelBarnesMobileDevelopment.Models {
             var adjustment = AdjustedTeaspoons(AggregateTeaspoons(measurement), multiplier);
             return CondenseTeaspoonsToMeasurement(adjustment);
         }
+
+        public decimal ConvertWeightToOunces(string measurement) {
+            var split = new Split();
+            var convert = new ConvertDensities();
+            var parse = new Parse();
+            var splitMeasurement = split.SplitMeasurementOrDensity(measurement);
+            var numericalSplitMeasurement = parse.ParseFractionToDecimal(splitMeasurement[0]);
+            if (splitMeasurement[1].Contains("oz") || splitMeasurement[1].Contains("ounce"))
+                return numericalSplitMeasurement;
+            else if (splitMeasurement[1].Contains("lb") || splitMeasurement[1].Contains("pound"))
+                return convert.ConvertLbsToOunces(numericalSplitMeasurement);
+            else if (splitMeasurement[1].Contains("gr"))
+                return convert.ConvertGramsToOunces(numericalSplitMeasurement);
+            else if (splitMeasurement[1].Contains("gall"))
+                return convert.ConvertGallonsToOunces(numericalSplitMeasurement);
+            else if (splitMeasurement[1].Contains("half g") || splitMeasurement[1].Contains("1/2 g"))
+                return convert.ConvertHalfGallonToOunces(numericalSplitMeasurement);
+            else if (splitMeasurement[1].Contains("quart"))
+                return convert.ConvertQuartToOunces(numericalSplitMeasurement);
+            else if (splitMeasurement[1].Contains("pint"))
+                return convert.ConvertPintsToOunces(numericalSplitMeasurement);
+            else if (splitMeasurement[1].Contains("cup"))
+                return convert.ConvertCupsToOunces(numericalSplitMeasurement); 
+            else return 0m;
+        }
+
+        //i'm haivng trouble with getting my controllers up and running - i need to work on this more. 
+
+        //adjustment for eggs
         public string AdjustEggsMeasurement(string eggsMeasurement, decimal changeTo, decimal changeFrom) {
             var parse = new Parse();
             var split = new Split();
@@ -181,9 +212,9 @@ namespace RachelBarnesMobileDevelopment.Models {
                 return string.Format("{0} {1}", parse.ParseDecimalToFraction(adjustedEggsMeasurementDecimal), eggsMeasurementSplit[1]);
             else if ((!boolean) && eggsMeasurementLastChar != 's')
                 return string.Format("{0} {1}s", parse.ParseDecimalToFraction(adjustedEggsMeasurementDecimal), eggsMeasurementSplit[1]);
-                    //this edit for the type of egg ingredient will get awkward if it's "egg whites, beaten"... 
-                        //it'll see that the last letter isn't 's', and it will adjust it to "egg whites, beatens"
-            else return "Eggs Measurement did not convert correctly"; 
+            //this edit for the type of egg ingredient will get awkward if it's "egg whites, beaten"... 
+            //it'll see that the last letter isn't 's', and it will adjust it to "egg whites, beatens"
+            else return "Eggs Measurement did not convert correctly";
             //this is not what I had envisioned, but for a try catch with an exception, the method has to be void, right? 
         }
     }

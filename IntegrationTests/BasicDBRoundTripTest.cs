@@ -10,25 +10,6 @@ namespace IntegrationTests {
     [TestClass]
     public class BasicDBRoundTripTest {
         [TestMethod]
-        public void CreateAndInsertIntoIngredientDensities() {
-            var db = new DatabaseStuff();
-            //this is testing the recreation of the database,a nd that the row was inserted. 
-            using (var context = new RachelsRosesMobileDevelopmentEntities()) {
-                db.RecreateDatabase(context);
-                var IngDen = new IngredientDensities();
-                IngDen.Name = "all purpose flour";
-                IngDen.Density = 5m;
-                context.IngredientDensities.Add(IngDen);
-                context.SaveChanges();
-
-                var densities =
-                    (from d in context.IngredientDensities
-                     select d).Count();
-
-                Assert.AreEqual(1, densities);
-            }
-        }
-        [TestMethod]
         public void CreateAndInsertIntoIngredientDensities2() {
             var db = new DatabaseStuff();
             var IngredientDensityColumns = new List<string>() {
@@ -39,6 +20,7 @@ namespace IntegrationTests {
             using (var context = new RachelsRosesMobileDevelopmentEntities()) {
                 db.RecreateDatabase(context, "IngredientDensities", IngredientDensityColumns);
                 var IngDen = new IngredientDensities();
+                IngDen.Id = 1; 
                 IngDen.Name = "bread flour";
                 IngDen.Density = 5.4m;
                 context.IngredientDensities.Add(IngDen);
@@ -49,7 +31,7 @@ namespace IntegrationTests {
                 Assert.AreEqual(1, densitiesCount);
             }
         }
-        [TestMethod]
+      [TestMethod]
         public void CreateAndInsertIntoIngredientsTable() {
             var db = new DatabaseStuff();
             var IngredientsColumns = new List<string>() {
@@ -190,8 +172,40 @@ namespace IntegrationTests {
 
                 var sellingInformationCount = (from s in context.SellingInformation
                                                select s).Count();
-                Assert.AreEqual(1, sellingInformationCount); 
+                Assert.AreEqual(1, sellingInformationCount);
             }
         }
+        [TestMethod]
+        public void CreateAndINsertIntoRecipeInformationTable() {
+            var db = new DatabaseStuff();
+            var RecipesColumns = new List<string>() {
+                "Id int not null identity(1,1) primary key",
+                "Name nvarchar(80) not null",
+                "Yield int not null",
+                "TotalPrice decimal(7,2) not null",
+                "PricePerYield decimal(5,2) not null",
+                "HaveEnoughToMakeCurrently int not null"
+            };
+            using (var context = new RachelsRosesMobileDevelopmentEntities()) {
+                db.RecreateDatabase(context, "Recipes", RecipesColumns);
+                var R = new Recipes();
+                R.Id = 1;
+                R.Name = "Honeywheat Bread";
+                R.Yield = 24;
+                R.TotalPrice = 0m;
+                R.PricePerYield = 0m;
+                R.HaveEnoughToMakeCurrently = 1; 
+                context.Recipes.Add(R);
+                context.SaveChanges();
+
+                var recipesCount = (from r in context.Recipes
+                                    select r).Count();
+
+                Assert.AreEqual(1, recipesCount);
+            }
+
+        }
+
     }
 }
+

@@ -372,5 +372,33 @@ namespace RachelBarnesMobileDevelopmentTests {
             var actual = convert.ConvertCupsToGallon(256m);
             Assert.AreEqual(expected, actual);
         }
+        [TestMethod]
+        public void ConvertHalfGallonToOunces() {
+            var convert = new ConvertDensities();
+            var expected = 64m;
+            var actual = convert.ConvertHalfGallonToOunces(1m);
+            Assert.AreEqual(expected, actual); 
+        }
+        [TestMethod]
+        public void ConvertPintToOunces() {
+            var convert = new ConvertDensities();
+            var expected = 16m; 
+            var actual =convert.ConvertPintsToOunces(1m);
+            Assert.AreEqual(expected, actual); 
+        }
+        [TestMethod]
+        public void ConvertQuartToOunces() {
+            var convert = new ConvertDensities();
+            var expected = 32m;
+            var actual = convert.ConvertQuartToOunces(1m);
+            Assert.AreEqual(expected, actual); 
+        }
+        [TestMethod]
+        public void ConvertCupsToOunces() {
+            var convert = new ConvertDensities();
+            var expected = 8m;
+            var actual = convert.ConvertCupsToOunces(1m);
+            Assert.AreEqual(expected, actual); 
+        }
     }
 }

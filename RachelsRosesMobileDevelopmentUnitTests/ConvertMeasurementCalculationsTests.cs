@@ -116,5 +116,34 @@ namespace RachelBarnesMobileDevelopmentTests{
             var actual = convert.ConvertTeaspoonsToPinches(1m);
             Assert.AreEqual(expected, actual); 
         }
+        //test convert a measurement to densities
+        [TestMethod]
+        public void ConvertOuncesToOunces() {
+            var convert = new ConvertMeasurementCalculations();
+            var expected = 15.5m;
+            var actual = convert.ConvertWeightToOunces("15.5 ounces");
+            Assert.AreEqual(expected, actual); 
+        }
+        [TestMethod]
+        public void ConvertLbsToOunces() {
+            var convert = new ConvertMeasurementCalculations();
+            var expected = 16m;
+            var actual = convert.ConvertWeightToOunces("1 lb");
+            Assert.AreEqual(expected, actual); 
+        }
+        [TestMethod]
+        public void ConvertLbsToOunces2() {
+            var convert = new ConvertMeasurementCalculations();
+            var expected = 89.6m;
+            var actual = convert.ConvertWeightToOunces("5.6 pounds");
+            Assert.AreEqual(expected, actual); 
+        }
+        [TestMethod]
+        public void ConvertGallonToOunces() {
+            var convert = new ConvertMeasurementCalculations();
+            var expected = 192m;
+            var actual = convert.ConvertWeightToOunces("1 1/2 gallons");
+            Assert.AreEqual(expected, actual); 
+        }
     }
 }
