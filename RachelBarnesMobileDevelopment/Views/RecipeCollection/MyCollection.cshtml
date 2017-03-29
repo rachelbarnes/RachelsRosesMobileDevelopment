@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "RecipeCollection";
+}
+<h3>Your Recipes: </h3>
+
+<h3>Your Recipes Home Page</h3>
+<br />
+@*<p>Recipe Name: <input</p>*@
+<form action="recipecollection/addarecipe" method="post">
+    <input name="name" placeholder="New Recipe Name" />
+    <input name="yield" placeholder="New Yield" />
+    @*for each line that has text entered, show a new line for ingredients. can i group this with input?*@
+    @*have to use an addingredient method and assign the current id to the ingredients*@
+    <input type="submit" value="Add your new Recipe" />
+</form>
+<br />
+<br />
+<table class="table">
+    <tr>
+        <th>Recipe Id</th>
+        <th>Name</th>
+        <th>Yield</th>
+        <th>Total Price</th>
+        <th>Price Per Serving</th>
+    </tr>
+    @foreach (var recipe in ViewBag.RecipeCollection) {
+        <tr>
+            <td>@recipe.Id</td>
+            <td>@recipe.Name</td>
+            <td>@recipe.Yield</td>
+            <td>@recipe.TotalPrice</td>
+            <td>@recipe.PricePerYield</td>
+        </tr>
+    }
+</table>
+
